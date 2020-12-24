@@ -13,7 +13,7 @@ namespace Service3B_102
     public interface IService1
     {
         [OperationContract]
-        [WebGet(UriTemplate = "Mahasiswa", ResponseFormat = WebMessageFormat.Json)]
+        [WebInvoke(UriTemplate = "Mahasiswa", ResponseFormat = WebMessageFormat.Json)]
         string UpdateMahasiswa(string nim, string nama, string prodi, string angkatan);
 
         [OperationContract]

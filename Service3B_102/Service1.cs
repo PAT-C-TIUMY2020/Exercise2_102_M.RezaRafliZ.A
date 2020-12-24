@@ -13,7 +13,28 @@ namespace Service3B_102
     {
         public string CountMahasiswa()
         {
-            throw new NotImplementedException();
+            string msg = "gagal";
+            SqlConnection sqlcon = new SqlConnection("Data Source =WINDOWS-C8ATAQL; Initial Catalog =\"TI UMY\"; Persist Security Info = True; User ID =sa; Password =pacitan1");
+            string query = String.Format("select Count(NIM) From Mahasiswa");
+            SqlCommand sqlcom = new SqlCommand(query, sqlcon);
+
+            try
+            {
+                sqlcon.Open();
+                Console.WriteLine(query);
+                Int32 count = (Int32)sqlcom.ExecuteScalar();
+                sqlcon.Close();
+                msg = "Jumlah Data Adalah :  " + count;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(query);
+                msg = "GAGAL";
+            }
+
+            return msg;
         }
 
         public string DeleteByNIM(string nim)
