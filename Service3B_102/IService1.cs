@@ -13,15 +13,52 @@ namespace Service3B_102
     public interface IService1
     {
         [OperationContract]
-        [WebInvoke(UriTemplate = "Mahasiswa", ResponseFormat = WebMessageFormat.Json)]
+        [WebInvoke(Method = "PUT", BodyStyle = WebMessageBodyStyle.WrappedRequest, UriTemplate = "Mahasiswa", ResponseFormat = WebMessageFormat.Json)]
         string UpdateMahasiswa(string nim, string nama, string prodi, string angkatan);
 
         [OperationContract]
-        [WebGet(UriTemplate = "Mahasiswa/nim={nim}", ResponseFormat = WebMessageFormat.Json)]
+        [WebInvoke(Method = "DELETE", BodyStyle = WebMessageBodyStyle.WrappedRequest, UriTemplate = "Mahasiswa", RequestFormat = WebMessageFormat.Json)]
         string DeleteByNIM(string nim);
 
         [OperationContract]
-        [WebGet(UriTemplate = "Mahasiswa", ResponseFormat = WebMessageFormat.Json)]
+        [WebInvoke(UriTemplate = "Mahasiswa", ResponseFormat = WebMessageFormat.Json)]
         string CountMahasiswa();
+
+        [OperationContract]
+        [WebGet(UriTemplate = "Mahasiswa", ResponseFormat = WebMessageFormat.Json)] //untuk membuat slash, selalu realtive
+        List<Mahasiswa> GetAllMahasiswa();
+    }
+
+    [DataContract]
+    public class Mahasiswa
+    {
+        private string _nama, _nim, _prodi, _angkatan; //_ adalah konvensi atau kesepakatan //variabel lokal
+        [DataMember(Order = 1)] // mengirim data untuk mengurutkan
+        public string nama
+        {
+            get { return _nama; }
+            set { _nama = value; }
+        }
+
+        [DataMember(Order = 2)]
+        public string nim
+        {
+            get { return _nim; }
+            set { _nim = value; }
+        }
+
+        [DataMember(Order = 3)]
+        public string prodi
+        {
+            get { return _prodi; }
+            set { _prodi = value; }
+        }
+
+        [DataMember(Order = 4)]
+        public string angkatan
+        {
+            get { return _angkatan; }
+            set { _angkatan = value; }
+        }
     }
 }

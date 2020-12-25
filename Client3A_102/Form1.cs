@@ -99,5 +99,18 @@ namespace Client3A_102
                 set { _angkatan = value; }
             }
         }
+
+        public void Clear()
+        {
+            textBoxNIM.Text = "";
+            textBoxNama.Text = "";
+            textBoxProdi.Text = "";
+            textBoxAngkatan.Text = "";
+        }
+
+        private void buttonClear_Click(object sender, EventArgs e)
+        {
+            Clear();
+        }
     }
 }

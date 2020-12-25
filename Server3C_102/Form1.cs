@@ -1,5 +1,4 @@
-﻿using Service3B_102;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,25 +8,32 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Service3B_102;
 
 namespace Server3C_102
 {
-    public partial class Form1 : Form
-    {
-        public Form1()
-        {
-            InitializeComponent();
-        }
+	public partial class Form1 : Form
+	{
+		public Form1()
+		{
+			InitializeComponent();
 
-        private void button1_Click(object sender, EventArgs e)
-        {
+		}
+
+		private void Form1_Load(object sender, EventArgs e)
+		{
+			button1.Enabled = true;
+			button2.Enabled = false;
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
 			ServiceHost hostObjek = null;
 
 			try
 			{
 				hostObjek = new ServiceHost(typeof(Service1));
 				hostObjek.Open();
-				MessageBox.Show("ready");
 				label1.Text = "ON";
 				label2.Text = "Klik OFF Untuk Mematikan";
 				button1.Enabled = false;
@@ -49,8 +55,8 @@ namespace Server3C_102
 			{
 				hostObjek = new ServiceHost(typeof(Service1));
 				hostObjek.Close();
-				label1.Text = "OFF";
-				label2.Text = "Klik ON Untuk Menghidupkan";
+				label2.Text = "OFF";
+				label1.Text = "Klik ON Untuk Menghidupkan";
 				button1.Enabled = true;
 				button2.Enabled = false;
 			}
@@ -60,12 +66,6 @@ namespace Server3C_102
 				Console.WriteLine(ex.Message);
 				Console.ReadLine();
 			}
-		}
-
-		private void Form1_Load(object sender, EventArgs e)
-		{
-			button1.Enabled = true;
-			button2.Enabled = false;
 		}
 	}
 }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/Service3B_102/Service1/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Service3B_102" />
+  <xs:element name="UpdateMahasiswa">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nim" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="nama" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="prodi" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="angkatan" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateMahasiswaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateMahasiswaResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteByNIM">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nim" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteByNIMResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteByNIMResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CountMahasiswa">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CountMahasiswaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CountMahasiswaResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllMahasiswa">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllMahasiswaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Service3B_102" minOccurs="0" name="GetAllMahasiswaResult" nillable="true" type="q1:ArrayOfMahasiswa" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

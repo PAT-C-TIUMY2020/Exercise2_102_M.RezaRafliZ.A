@@ -24,7 +24,7 @@ namespace Service3B_102
                 Console.WriteLine(query);
                 Int32 count = (Int32)sqlcom.ExecuteScalar();
                 sqlcon.Close();
-                msg = "Jumlah Data Adalah :  " + count;
+                msg = "Jumlah Data Adalah : " + count;
 
             }
             catch (Exception ex)
@@ -61,6 +61,65 @@ namespace Service3B_102
 
 
             return msg;
+        }
+
+        public string DeleteMahasiswa(string nim)
+        {
+            string msg = "GAGAL";
+            SqlConnection sqlcon = new SqlConnection("Data Source =WINDOWS-C8ATAQL; Initial Catalog =\"TI UMY\"; Persist Security Info = True; User ID =sa; Password =pacitan1");
+            string query = "delete from dbo.Mahasiswa where NIM = '" + nim + "'";
+            SqlCommand sqlcom = new SqlCommand(query, sqlcon);
+            try
+            {
+                sqlcon.Open();
+                Console.WriteLine(query);
+                sqlcom.ExecuteNonQuery();
+                sqlcon.Close();
+                msg = "Sukses";
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(query);
+                msg = "GAGAL";
+            }
+
+
+            return msg;
+        }
+
+        public List<Mahasiswa> GetAllMahasiswa()
+        {
+            List<Mahasiswa> mahas = new List<Mahasiswa>();
+
+            SqlConnection con = new SqlConnection("Data Source =WINDOWS-C8ATAQL; Initial Catalog =\"TI UMY\"; Persist Security Info = True; User ID =sa; Password =pacitan1");
+            string query = "select Nama, NIM, Prodi, Angkatan from dbo.Mahasiswa";
+            SqlCommand com = new SqlCommand(query, con);
+
+            try
+            {
+                con.Open();
+                SqlDataReader reader = com.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Mahasiswa mhs = new Mahasiswa();
+                    mhs.nama = reader.GetString(0);
+                    mhs.nim = reader.GetString(1);
+                    mhs.prodi = reader.GetString(2);
+                    mhs.angkatan = reader.GetString(3);
+
+                    mahas.Add(mhs);
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(query);
+            }
+            return mahas;
         }
 
         public string UpdateMahasiswa(string nim, string nama, string prodi, string angkatan)
